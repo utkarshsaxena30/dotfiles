@@ -1,0 +1,9 @@
+# These dotfiles are consumed by Linux/WSL tools - force LF line endings
+# everywhere so Windows checkouts don't rewrite them to CRLF.
+* text=auto eol=lf
+
+# Never touch binary files
+*.swp binary
+*.png binary
+*.jpg binary
+*.gif binary

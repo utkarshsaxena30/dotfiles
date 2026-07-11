@@ -1,0 +1,5 @@
+# Vim/Neovim swap and temp files — never commit these
+*.swp
+*.swo
+*.swn
+*~
