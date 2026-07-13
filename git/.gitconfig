@@ -1,0 +1,35 @@
+# Portable, cross-machine Git settings. Stowed to ~/.gitconfig.
+# Machine-specific bits (identity, credential helpers) live in
+# ~/.gitconfig.local, which is NOT tracked in this repo. See the
+# [include] at the bottom of this file and the repo README.
+
+[core]
+	# Keep LF in the repository on every OS. On Windows this converts
+	# CRLF -> LF on commit but leaves the working tree untouched on
+	# checkout, so cross-platform repos stay clean.
+	autocrlf = input
+	eol = lf
+	# Ignore executable-bit changes. Avoids noisy diffs when a repo
+	# lives on a Windows drive accessed from WSL (DrvFs reports 777).
+	filemode = false
+
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+
+[pull]
+	rebase = false
+
+[fetch]
+	prune = true
+
+[color]
+	ui = auto
+
+# Per-machine overrides: identity, credential helpers, work vs personal
+# email, etc. Anything defined here wins because the include is last.
+# Create this file on each machine (see README).
+[include]
+	path = ~/.gitconfig.local
