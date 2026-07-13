@@ -13,6 +13,10 @@ your home directory, and Stow creates symlinks from `$HOME` into this repo.
 dotfiles/
 ├── bash/                 -> package "bash"
 │   └── .bashrc               ~/.bashrc
+├── copilot/              -> package "copilot"
+│   └── .copilot/
+│       ├── skills/...        ~/.copilot/skills/...
+│       └── mcp-config.json   ~/.copilot/mcp-config.json
 ├── git/                  -> package "git"
 │   └── .gitconfig            ~/.gitconfig
 ├── nvim/                 -> package "nvim"
