@@ -432,6 +432,19 @@ do
   -- - sr)'  - [S]urround [R]eplace [)] [']
   require('mini.surround').setup()
 
+  -- File explorer: browse/edit the filesystem as a set of columns.
+  --  Opens focused on the current file (or cwd if the buffer is unnamed).
+  --  You can rename/create/delete by editing the listing and confirming.
+  require('mini.files').setup()
+  vim.keymap.set('n', '<leader>e', function()
+    -- Toggle: close if already open, otherwise open at the current file.
+    if not MiniFiles.close() then
+      local buf_name = vim.api.nvim_buf_get_name(0)
+      local path = buf_name ~= '' and buf_name or vim.uv.cwd()
+      MiniFiles.open(path)
+    end
+  end, { desc = 'File [E]xplorer (mini.files)' })
+
   -- Simple and easy statusline.
   --  You could remove this setup call if you don't like it,
   --  and try some other statusline plugin
@@ -950,6 +963,16 @@ do
       end
     end,
   })
+end
+
+-- ============================================================
+-- SECTION 9.5: MARKDOWN RENDERING
+-- In-buffer markdown rendering (headings, lists, code blocks, tables).
+-- Renders in normal mode; shows raw markdown on the cursor's line for editing.
+-- ============================================================
+do
+  vim.pack.add { gh 'MeanderingProgrammer/render-markdown.nvim' }
+  require('render-markdown').setup {}
 end
 
 -- ============================================================
