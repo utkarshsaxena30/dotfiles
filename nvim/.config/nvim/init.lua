@@ -23,6 +23,9 @@ require 'config.keymaps'
 -- ============================================================
 require 'config.autocmds'
 
+-- Native quickfix and location-list presentation
+require 'config.quickfix'
+
 -- ============================================================
 -- SECTION 4: PLUGIN MANAGER SETUP
 -- build hooks, global helper functions
