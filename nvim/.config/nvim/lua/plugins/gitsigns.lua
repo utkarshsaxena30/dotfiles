@@ -7,6 +7,7 @@ require('gitsigns').setup {
     delete = { text = '_' }, ---@diagnostic disable-line: missing-fields
     topdelete = { text = '‾' }, ---@diagnostic disable-line: missing-fields
     changedelete = { text = '~' }, ---@diagnostic disable-line: missing-fields
+    attach_to_untracked = true,
   },
   current_line_blame = true,
   on_attach = function(bufnr)
@@ -29,5 +30,5 @@ require('gitsigns').setup {
     map('n', '<leader>hq', gitsigns.setqflist, { desc = 'git hunk [q]uickfix list (all changes in this file)' })
 
     map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-  end
+  end,
 }
