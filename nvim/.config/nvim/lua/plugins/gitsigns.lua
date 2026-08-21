@@ -7,8 +7,8 @@ require('gitsigns').setup {
     delete = { text = '_' }, ---@diagnostic disable-line: missing-fields
     topdelete = { text = '‾' }, ---@diagnostic disable-line: missing-fields
     changedelete = { text = '~' }, ---@diagnostic disable-line: missing-fields
-    attach_to_untracked = true,
   },
+  attach_to_untracked = true,
   current_line_blame = true,
   on_attach = function(bufnr)
     local gitsigns = require 'gitsigns'
