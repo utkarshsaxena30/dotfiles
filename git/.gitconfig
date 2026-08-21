@@ -28,6 +28,11 @@
 [color]
 	ui = auto
 
+[status]
+	# Enumerate files inside untracked directories so tools such as
+	# Gitsigns can include them in repository-wide change lists.
+	showUntrackedFiles = all
+
 # Per-machine overrides: identity, credential helpers, work vs personal
 # email, etc. Anything defined here wins because the include is last.
 # Create this file on each machine (see README).
