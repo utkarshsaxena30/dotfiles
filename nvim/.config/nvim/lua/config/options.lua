@@ -1,5 +1,6 @@
 -- Relative line numbers, for easier navigation
 vim.o.relativenumber = true
+vim.o.number = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
