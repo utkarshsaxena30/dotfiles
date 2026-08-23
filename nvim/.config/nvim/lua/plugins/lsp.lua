@@ -75,6 +75,8 @@ local servers = {
 
   ts_ls = {},
 
+  eslint = {},
+
   -- Special Lua Config, as recommended by neovim help docs
   lua_ls = {
     on_init = function(client)
@@ -129,7 +131,6 @@ require('mason').setup {}
 -- You can press `g?` for help in this menu.
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
-  'eslint_d',
   'prettierd',
   'stylua',
   'ts-standard',
