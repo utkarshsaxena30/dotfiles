@@ -75,8 +75,6 @@ local servers = {
 
   ts_ls = {},
 
-  stylua = {}, -- Used to format Lua code
-
   -- Special Lua Config, as recommended by neovim help docs
   lua_ls = {
     on_init = function(client)
@@ -131,7 +129,10 @@ require('mason').setup {}
 -- You can press `g?` for help in this menu.
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
-  -- You can add other tools here that you want Mason to install
+  'eslint_d',
+  'prettierd',
+  'stylua',
+  'ts-standard',
 })
 
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }
