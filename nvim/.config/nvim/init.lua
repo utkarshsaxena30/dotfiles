@@ -50,10 +50,11 @@ end
 
 -- ============================================================
 -- SECTION 6: SEARCH & NAVIGATION
--- Telescope setup and autocommands
+-- Fuzzy finder setup and shared keymaps
 -- ============================================================
 do
-  require 'plugins.telescope'
+  -- Switch backends by requiring either plugins.fzf-lua or plugins.telescope.
+  require 'plugins.fzf-lua'
 end
 
 -- ============================================================

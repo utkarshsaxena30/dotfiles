@@ -12,6 +12,7 @@
 	# Ignore executable-bit changes. Avoids noisy diffs when a repo
 	# lives on a Windows drive accessed from WSL (DrvFs reports 777).
 	filemode = false
+	editor = vim
 
 [init]
 	defaultBranch = main
