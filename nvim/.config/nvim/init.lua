@@ -62,6 +62,7 @@ end
 -- LSP keymaps, server configuration, Mason tools installations
 -- ============================================================
 do
+  require 'plugins.roslyn'
   require 'plugins.lsp'
 end
 

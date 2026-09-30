@@ -77,6 +77,15 @@ local servers = {
 
   eslint = {},
 
+  roslyn = {
+    settings = {
+      ['csharp|background_analysis'] = {
+        dotnet_analyzer_diagnostics_scope = 'openFiles',
+        dotnet_compiler_diagnostics_scope = 'openFiles',
+      },
+    },
+  },
+
   -- Special Lua Config, as recommended by neovim help docs
   lua_ls = {
     on_init = function(client)
@@ -120,7 +129,12 @@ vim.pack.add {
 }
 
 -- Automatically install LSPs and related tools to stdpath for Neovim
-require('mason').setup {}
+require('mason').setup {
+  registries = {
+    'github:mason-org/mason-registry',
+    'github:Crashdummyy/mason-registry',
+  },
+}
 
 -- Ensure the servers and tools above are installed
 --
