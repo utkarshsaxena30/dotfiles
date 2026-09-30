@@ -22,11 +22,11 @@ map('n', '<leader><Tab>', '<cmd>edit #<CR>', {
   desc = 'Switch to alternate file',
 })
 
-map('n', '<leader><Tab>h', '<cmd>botright sbuffer #<CR>', {
+map('n', '<leader>h<Tab>', '<cmd>botright sbuffer #<CR>', {
   desc = 'Open alternate file in [H]orizontal split',
 })
 
-map('n', '<leader><Tab>v', '<cmd>botright vertical sbuffer #<CR>', {
+map('n', '<leader>v<Tab>', '<cmd>botright vertical sbuffer #<CR>', {
   desc = 'Open alternate file in [V]ertical split',
 })
 
