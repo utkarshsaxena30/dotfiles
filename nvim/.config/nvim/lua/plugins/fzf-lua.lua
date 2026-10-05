@@ -16,15 +16,6 @@ fzf.setup {
       ['ctrl-u'] = 'preview-page-up',
     },
   },
-  winopts = {
-    path_shorten = 1,
-  },
-  files = {
-    formatter = 'path.filename_first',
-  },
-  grep = {
-    formatter = 'path.filename_first',
-  },
 }
 
 require('config.keymaps').setup_picker {

@@ -27,6 +27,9 @@ require 'config.autocmds'
 -- Native quickfix and location-list presentation
 require 'config.quickfix'
 
+-- Additional filetype detection and Tree-sitter language aliases
+require 'config.filetypes'
+
 -- ============================================================
 -- SECTION 4: PLUGIN MANAGER SETUP
 -- build hooks, global helper functions
@@ -64,6 +67,7 @@ end
 do
   require 'plugins.roslyn'
   require 'plugins.lsp'
+  require 'plugins.dotnet'
 end
 
 -- ============================================================

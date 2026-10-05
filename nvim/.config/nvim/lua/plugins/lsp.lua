@@ -65,6 +65,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client and client:supports_method('textDocument/inlayHint', event.buf) then
       map('<leader>th', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end, '[T]oggle Inlay [H]ints')
     end
+
+    if client and client:supports_method('textDocument/codeLens', event.buf) then vim.lsp.codelens.enable(true, { bufnr = event.buf }) end
   end,
 })
 
@@ -82,6 +84,21 @@ local servers = {
       ['csharp|background_analysis'] = {
         dotnet_analyzer_diagnostics_scope = 'openFiles',
         dotnet_compiler_diagnostics_scope = 'openFiles',
+      },
+      ['csharp|completion'] = {
+        dotnet_show_completion_items_from_unimported_namespaces = true,
+      },
+      ['csharp|inlay_hints'] = {
+        csharp_enable_inlay_hints_for_implicit_object_creation = true,
+        csharp_enable_inlay_hints_for_implicit_variable_types = true,
+        dotnet_enable_inlay_hints_for_parameters = true,
+        dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+      },
+      ['csharp|code_lens'] = {
+        dotnet_enable_references_code_lens = true,
+      },
+      ['csharp|formatting'] = {
+        dotnet_organize_imports_on_format = true,
       },
     },
   },

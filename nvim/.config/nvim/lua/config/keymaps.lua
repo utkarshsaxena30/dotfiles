@@ -67,6 +67,10 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]ui
 -- or just use <C-\><C-n> to exit terminal mode
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+if vim.fn.has 'win32' == 1 then map('n', '<leader>tt', '<cmd>botright split | terminal pwsh -NoLogo<CR>', {
+  desc = '[T]erminal pwsh',
+}) end
+
 -- Disable arrow keys in normal mode
 map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')

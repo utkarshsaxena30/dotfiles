@@ -4,8 +4,36 @@
 vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
 
 -- Ensure basic parsers are installed
-local parsers =
-  { 'bash', 'c', 'cpp', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'typescript', 'tsx', 'javascript', 'jsx' }
+local parsers = {
+  'bash',
+  'bicep',
+  'c',
+  'c_sharp',
+  'cpp',
+  'diff',
+  'dockerfile',
+  'editorconfig',
+  'helm',
+  'html',
+  'http',
+  'javascript',
+  'json',
+  'jsx',
+  'kusto',
+  'lua',
+  'luadoc',
+  'markdown',
+  'markdown_inline',
+  'mermaid',
+  'powershell',
+  'query',
+  'sql',
+  'tsx',
+  'typescript',
+  'vim',
+  'vimdoc',
+  'xml',
+}
 
 require('nvim-treesitter').install(parsers)
 

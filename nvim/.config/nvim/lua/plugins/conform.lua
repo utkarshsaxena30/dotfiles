@@ -10,7 +10,9 @@ require('conform').setup {
       lua = true,
       python = true,
       javascript = true,
+      javascriptreact = true,
       typescript = true,
+      typescriptreact = true,
     }
     if enabled_filetypes[vim.bo[bufnr].filetype] then
       return { timeout_ms = 500 }
@@ -29,8 +31,39 @@ require('conform').setup {
     -- python = { "isort", "black" },
     --
     -- You can use 'stop_after_first' to run the first available formatter from the list
-    javascript = { 'prettierd', 'prettier', top_after_first = true },
+    javascript = { 'prettierd', 'prettier', stop_after_first = true },
+    javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+    typescript = { 'prettierd', 'prettier', stop_after_first = true },
+    typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
   },
 }
 
-vim.keymap.set({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true } end, { desc = '[F]ormat buffer' })
+vim.keymap.set('n', '<leader>f', function() require('conform').format { async = true } end, { desc = '[F]ormat buffer' })
+
+vim.keymap.set('x', '<leader>f', function()
+  local mode = vim.api.nvim_get_mode().mode
+  local start = vim.fn.getpos 'v'
+  local finish = vim.fn.getpos '.'
+  local start_row, start_col = start[2], start[3]
+  local end_row, end_col = finish[2], finish[3]
+
+  if start_row == end_row and end_col < start_col then
+    start_col, end_col = end_col, start_col
+  elseif end_row < start_row then
+    start_row, end_row = end_row, start_row
+    start_col, end_col = end_col, start_col
+  end
+
+  if mode == 'V' then
+    start_col = 1
+    end_col = #vim.api.nvim_buf_get_lines(0, end_row - 1, end_row, true)[1]
+  end
+
+  require('conform').format {
+    async = true,
+    range = {
+      start = { start_row, start_col - 1 },
+      ['end'] = { end_row, end_col - 1 },
+    },
+  }
+end, { desc = '[F]ormat selection' })

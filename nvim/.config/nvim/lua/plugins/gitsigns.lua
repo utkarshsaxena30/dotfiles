@@ -1,5 +1,54 @@
 vim.pack.add { gh 'lewis6991/gitsigns.nvim' }
 
+local function changed_files_text(info)
+  local items = vim.fn.getqflist({ id = info.id, items = 1 }).items
+  local lines = {}
+
+  for index = info.start_idx, info.end_idx do
+    local filename = vim.api.nvim_buf_get_name(items[index].bufnr)
+    lines[#lines + 1] = vim.fn.fnamemodify(filename, ':~:.')
+  end
+
+  return lines
+end
+
+local function open_changed_files()
+  require('gitsigns').setqflist('all', { open = false }, function(err)
+    if err then
+      vim.notify(err, vim.log.levels.ERROR)
+      return
+    end
+
+    local seen = {}
+    local files = {}
+
+    for _, item in ipairs(vim.fn.getqflist()) do
+      local filename = vim.api.nvim_buf_get_name(item.bufnr)
+      if filename ~= '' and not seen[filename] then
+        seen[filename] = true
+        files[#files + 1] = {
+          bufnr = item.bufnr,
+          lnum = 1,
+          col = 1,
+        }
+      end
+    end
+
+    vim.fn.setqflist({}, ' ', {
+      title = 'Git changed files',
+      items = files,
+      quickfixtextfunc = changed_files_text,
+    })
+
+    if #files > 0 then
+      vim.cmd.copen()
+    else
+      vim.cmd.cclose()
+      vim.notify 'No changed files'
+    end
+  end)
+end
+
 require('gitsigns').setup {
   signs = {
     add = { text = '+' }, ---@diagnostic disable-line: missing-fields
@@ -51,7 +100,7 @@ require('gitsigns').setup {
     map('n', '<leader>hb', function() gitsigns.blame_line { full = true } end, { desc = 'git [b]lame line' })
     map('n', '<leader>hd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
     map('n', '<leader>hD', function() gitsigns.diffthis '@' end, { desc = 'git [D]iff against last commit' })
-    map('n', '<leader>hQ', function() gitsigns.setqflist 'all' end, { desc = 'git hunk [Q]uickfix list (all files in repo)' })
+    map('n', '<leader>hQ', open_changed_files, { desc = 'git changed files [Q]uickfix list' })
     map('n', '<leader>hq', gitsigns.setqflist, { desc = 'git hunk [q]uickfix list (all changes in this file)' })
     -- Toggles
     map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
