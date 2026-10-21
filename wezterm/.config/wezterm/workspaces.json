@@ -4,7 +4,9 @@
     "wsl_distro": "Ubuntu",
     "wsl_home": "/home/utsaxena",
     "windows_shell": "powershell.exe",
-    "theme": "Tokyo Night"
+    "theme": "Tokyo Night",
+    "inactive_pane_saturation": 0.65,
+    "inactive_pane_brightness": 0.4
   },
   "copilot_sessions": {
     "cayman-general": {

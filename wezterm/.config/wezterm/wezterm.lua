@@ -40,6 +40,10 @@ local color_scheme = initial_ws.settings.theme or 'Tokyo Night'
 -- Terminal & Visual Settings (matching your .tmux.conf theme & behavior)
 -- ============================================================================
 config.color_scheme = color_scheme
+config.inactive_pane_hsb = {
+  saturation = initial_ws.settings.inactive_pane_saturation or 0.65,
+  brightness = initial_ws.settings.inactive_pane_brightness or 0.40,
+}
 config.default_prog = { win_shell, '-NoLogo' }
 config.scrollback_lines = 5000
 config.audible_bell = 'Disabled'
