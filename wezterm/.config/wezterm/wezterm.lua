@@ -34,10 +34,12 @@ local initial_ws = load_workspaces_config()
 local wsl_distro = initial_ws.settings.wsl_distro or 'Ubuntu'
 local wsl_home = initial_ws.settings.wsl_home or '/home/utsaxena'
 local win_shell = initial_ws.settings.windows_shell or 'powershell.exe'
+local color_scheme = initial_ws.settings.theme or 'Tokyo Night'
 
 -- ============================================================================
 -- Terminal & Visual Settings (matching your .tmux.conf theme & behavior)
 -- ============================================================================
+config.color_scheme = color_scheme
 config.default_prog = { win_shell, '-NoLogo' }
 config.scrollback_lines = 5000
 config.audible_bell = 'Disabled'

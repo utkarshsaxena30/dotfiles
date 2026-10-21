@@ -3,7 +3,8 @@
     "layout_mode": "single_window",
     "wsl_distro": "Ubuntu",
     "wsl_home": "/home/utsaxena",
-    "windows_shell": "powershell.exe"
+    "windows_shell": "powershell.exe",
+    "theme": "Tokyo Night"
   },
   "copilot_sessions": {
     "cayman-general": {
