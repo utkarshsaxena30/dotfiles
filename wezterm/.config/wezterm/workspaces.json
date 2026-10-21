@@ -1,0 +1,165 @@
+{
+  "settings": {
+    "layout_mode": "single_window",
+    "wsl_distro": "Ubuntu",
+    "wsl_home": "/home/utsaxena",
+    "windows_shell": "powershell.exe"
+  },
+  "copilot_sessions": {
+    "cayman-general": {
+      "os": "windows",
+      "cwd": "C:\\Users\\utsaxena\\work",
+      "name": "cayman-general",
+      "description": "Cayman general engineering & Azure"
+    },
+    "cayman-onboarding": {
+      "os": "windows",
+      "cwd": "C:\\Users\\utsaxena\\work",
+      "name": "cayman-onboarding",
+      "description": "Cayman services onboarding"
+    },
+    "cayman-revenue-sku": {
+      "os": "windows",
+      "cwd": "C:\\Users\\utsaxena\\work",
+      "name": "cayman-revenue-sku",
+      "description": "Cayman revenue SKU work"
+    },
+    "system-design-ddia": {
+      "os": "wsl",
+      "cwd": "~/repositories/Documentation",
+      "name": "system-design-ddia",
+      "description": "DDIA 2nd Edition study"
+    },
+    "system-design-general": {
+      "os": "wsl",
+      "cwd": "~/repositories/Documentation",
+      "name": "system-design-general",
+      "description": "System design preparation"
+    },
+    "dsa": {
+      "os": "wsl",
+      "cwd": "~/repositories/Documentation",
+      "name": "dsa",
+      "description": "DSA problem solving & notes"
+    },
+    "dotfiles": {
+      "os": "wsl",
+      "cwd": "~/dotfiles",
+      "name": "dotfiles",
+      "description": "Neovim, WezTerm, tmux & dotfiles config"
+    }
+  },
+  "tabs": [
+    {
+      "title": "work-cayman",
+      "window": "windows",
+      "os": "windows",
+      "panes": [
+        {
+          "type": "nvim",
+          "cwd": "C:\\Users\\utsaxena\\work\\cayman"
+        },
+        {
+          "type": "copilot",
+          "session": "cayman-general",
+          "split": "right",
+          "target_pane": 1,
+          "size": 0.5
+        },
+        {
+          "type": "copilot",
+          "session": "cayman-onboarding",
+          "split": "bottom",
+          "target_pane": 1,
+          "size": 0.5
+        },
+        {
+          "type": "copilot",
+          "session": "cayman-revenue-sku",
+          "split": "bottom",
+          "target_pane": 2,
+          "size": 0.5
+        }
+      ]
+    },
+    {
+      "title": "work-sq",
+      "window": "windows",
+      "os": "windows",
+      "panes": [
+        {
+          "type": "nvim",
+          "cwd": "C:\\Users\\utsaxena\\work\\SQ-pricing-availability"
+        },
+        {
+          "type": "shell",
+          "cwd": "C:\\Users\\utsaxena\\work",
+          "split": "right",
+          "target_pane": 1,
+          "size": 0.5
+        }
+      ]
+    },
+    {
+      "title": "system-design",
+      "window": "wsl",
+      "os": "wsl",
+      "panes": [
+        {
+          "type": "nvim",
+          "cwd": "~/repositories/Documentation"
+        },
+        {
+          "type": "copilot",
+          "session": "system-design-ddia",
+          "split": "right",
+          "target_pane": 1,
+          "size": 0.5
+        },
+        {
+          "type": "copilot",
+          "session": "system-design-general",
+          "split": "bottom",
+          "target_pane": 2,
+          "size": 0.5
+        }
+      ]
+    },
+    {
+      "title": "dsa",
+      "window": "wsl",
+      "os": "wsl",
+      "panes": [
+        {
+          "type": "nvim",
+          "cwd": "~/repositories/Documentation"
+        },
+        {
+          "type": "copilot",
+          "session": "dsa",
+          "split": "right",
+          "target_pane": 1,
+          "size": 0.5
+        }
+      ]
+    },
+    {
+      "title": "dotfiles",
+      "window": "wsl",
+      "os": "wsl",
+      "panes": [
+        {
+          "type": "nvim",
+          "cwd": "~/dotfiles"
+        },
+        {
+          "type": "copilot",
+          "session": "dotfiles",
+          "split": "right",
+          "target_pane": 1,
+          "size": 0.5
+        }
+      ]
+    }
+  ]
+}

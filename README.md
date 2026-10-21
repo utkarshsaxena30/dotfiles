@@ -21,8 +21,13 @@ dotfiles/
 │   └── .gitconfig            ~/.gitconfig
 ├── nvim/                 -> package "nvim"
 │   └── .config/nvim/...      ~/.config/nvim/...
-└── tmux/                 -> package "tmux"
-    └── .tmux.conf            ~/.tmux.conf
+├── tmux/                 -> package "tmux"
+│   └── .tmux.conf            ~/.tmux.conf
+├── wezterm/              -> package "wezterm"
+│   └── .config/wezterm/
+│       ├── wezterm.lua       ~/.config/wezterm/wezterm.lua
+│       └── workspaces.json   ~/.config/wezterm/workspaces.json
+└── setup-windows.ps1     -> Windows native linker + startup task installer
 ```
 
 So `stow nvim` symlinks `~/.config/nvim` → `dotfiles/nvim/.config/nvim`.
@@ -145,3 +150,37 @@ stow -D tmux          # delete/unstow
 # Preview changes without touching the filesystem
 stow -nv nvim         # dry-run, verbose
 ```
+
+## Windows Setup (No Cross-OS Symlinks)
+
+To keep file I/O fast and avoid cross-OS symlink issues between Windows and WSL, maintain separate git clones of `dotfiles` on each OS (`~/dotfiles` in WSL and `C:\Users\<user>\dotfiles` on Windows) synced via GitHub.
+
+On Windows PowerShell:
+
+```powershell
+cd ~\dotfiles
+.\setup-windows.ps1
+```
+
+`setup-windows.ps1` creates native Windows directory junctions and file symlinks (backing up any existing files first) for:
+- `~/.config/wezterm` → `dotfiles/wezterm/.config/wezterm`
+- `$env:LOCALAPPDATA\nvim` → `dotfiles/nvim/.config/nvim`
+- `~/.copilot/skills` and `~/.copilot/mcp-config.json`
+- `~/.tmux.conf` and `~/.gitconfig`
+- Registers the `Dotfiles-WezTerm-Workspace` Windows logon scheduled task (pass `-SkipStartupTask` to skip or `-UnregisterStartupTask` to remove).
+
+## Declarative Multi-OS Workspace (`wezterm/.config/wezterm/workspaces.json`)
+
+WezTerm acts as the unified terminal multiplexer across both Windows PowerShell and WSL Ubuntu, using the same `Ctrl-x` prefix and keybindings as `.tmux.conf`:
+
+- **`Ctrl-x |`** / **`Ctrl-x -`**: Split pane right / down (inherits current pane OS & directory)
+- **`Ctrl-Left/Right/Up/Down`**: Navigate panes directly
+- **`Ctrl-x z`**: Toggle pane zoom
+- **`Ctrl-x c`** / **`Ctrl-x u`**: New tab in current OS / new WSL Ubuntu tab
+- **`Ctrl-x 1..9`** / **`Ctrl-x n`** / **`Ctrl-x p`**: Switch tabs
+- **`Ctrl-x s`** / **`Ctrl-x S`**: Fuzzy picker for named Copilot sessions in `workspaces.json` (opens in split pane or new tab)
+
+To add or change startup tabs, panes, or named Copilot sessions, edit `wezterm/.config/wezterm/workspaces.json`:
+- **`settings.layout_mode`**: Set to `"single_window"` (all tabs in one WezTerm window) or `"by_window_group"` (separate OS windows grouped by each tab's `"window"` property).
+- **`copilot_sessions`**: Central registry of named Copilot CLI sessions (`os`, `cwd`, `name`, `description`), used by both startup panes and the `Ctrl-x s` interactive picker.
+- **`tabs`**: Ordered list of tabs and their split panes (`nvim`, `copilot`, `shell`, or `command`).
