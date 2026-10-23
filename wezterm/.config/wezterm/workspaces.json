@@ -50,6 +50,12 @@
       "cwd": "~/dotfiles",
       "name": "dotfiles",
       "description": "Neovim, WezTerm, tmux & dotfiles config"
+    },
+    "practice-nvim": {
+      "os": "wsl",
+      "cwd": "~/dotfiles",
+      "name": "practice-nvim",
+      "description": "Neovim practice"
     }
   },
   "tabs": [
@@ -160,6 +166,13 @@
           "session": "dotfiles",
           "split": "right",
           "target_pane": 1,
+          "size": 0.5
+        },
+        {
+          "type": "copilot",
+          "session": "practice-nvim",
+          "split": "bottom",
+          "target_pane": 2,
           "size": 0.5
         }
       ]
