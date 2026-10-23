@@ -13,6 +13,7 @@ require('conform').setup {
       javascriptreact = true,
       typescript = true,
       typescriptreact = true,
+      markdown = true,
     }
     if enabled_filetypes[vim.bo[bufnr].filetype] then
       return { timeout_ms = 500 }
@@ -35,6 +36,7 @@ require('conform').setup {
     javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
     typescript = { 'prettierd', 'prettier', stop_after_first = true },
     typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+    markdown = { 'prettierd', 'prettier', stop_after_first = true },
   },
 }
 
