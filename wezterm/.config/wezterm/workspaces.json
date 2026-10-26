@@ -59,7 +59,7 @@
     },
     "docker": {
       "os": "wsl",
-      "cwd": "~/learn-docker",
+      "cwd": "~/repositories/Documentation",
       "name": "docker",
       "description": "Learning Docker"
     }
