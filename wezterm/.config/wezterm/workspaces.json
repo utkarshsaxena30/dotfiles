@@ -56,6 +56,12 @@
       "cwd": "~/dotfiles",
       "name": "practice-nvim",
       "description": "Neovim practice"
+    },
+    "docker": {
+      "os": "wsl",
+      "cwd": "~/learn-docker",
+      "name": "docker",
+      "description": "Learning Docker"
     }
   },
   "tabs": [
@@ -171,6 +177,31 @@
         {
           "type": "copilot",
           "session": "practice-nvim",
+          "split": "bottom",
+          "target_pane": 2,
+          "size": 0.5
+        }
+      ]
+    },
+    {
+      "title": "infra",
+      "window": "wsl",
+      "os": "wsl",
+      "panes": [
+        {
+          "type": "nvim",
+          "cwd": "~/repositories/Documentation"
+        },
+        {
+          "type": "copilot",
+          "session": "docker",
+          "split": "right",
+          "target_pane": 1,
+          "size": 0.5
+        },
+        {
+          "type": "shell",
+          "cwd": "~/learn-docker",
           "split": "bottom",
           "target_pane": 2,
           "size": 0.5
