@@ -327,6 +327,63 @@ local function open_copilot_session_picker(open_mode)
 end
 
 -- ============================================================================
+-- Zoomed pane pair: Ctrl-x m marks a pane, Ctrl-x ; toggles zoom between the
+-- marked pane and the pane you toggled from. State lives in wezterm.GLOBAL
+-- (per tab) so it survives config reloads.
+-- ============================================================================
+local function find_tab_pane(tab, pane_id)
+  if not pane_id then
+    return nil
+  end
+  for _, p in ipairs(tab:panes()) do
+    if p:pane_id() == pane_id then
+      return p
+    end
+  end
+  return nil
+end
+
+local mark_zoom_pane = wezterm.action_callback(function(window, pane)
+  local tab = pane:tab()
+  if not tab then
+    return
+  end
+  local id = tostring(tab:tab_id())
+  wezterm.GLOBAL['zoom_mark_' .. id] = pane:pane_id()
+  wezterm.GLOBAL['zoom_other_' .. id] = nil
+  window:toast_notification('WezTerm', 'Pane marked for zoom toggle', nil, 1500)
+end)
+
+local toggle_zoom_pair = wezterm.action_callback(function(window, pane)
+  local tab = pane:tab()
+  if not tab then
+    return
+  end
+  local id = tostring(tab:tab_id())
+  local marked = find_tab_pane(tab, wezterm.GLOBAL['zoom_mark_' .. id])
+  if not marked then
+    window:toast_notification('WezTerm', 'No marked pane in this tab (Ctrl-x m)', nil, 2000)
+    return
+  end
+
+  local target
+  if pane:pane_id() == marked:pane_id() then
+    target = find_tab_pane(tab, wezterm.GLOBAL['zoom_other_' .. id])
+    if not target then
+      window:toast_notification('WezTerm', 'Move to another pane, then Ctrl-x ;', nil, 2000)
+      return
+    end
+  else
+    wezterm.GLOBAL['zoom_other_' .. id] = pane:pane_id()
+    target = marked
+  end
+
+  tab:set_zoomed(false)
+  target:activate()
+  tab:set_zoomed(true)
+end)
+
+-- ============================================================================
 -- Keybindings (Matches your .tmux.conf: Ctrl-x prefix, | and - splits, etc.)
 -- ============================================================================
 config.leader = { key = 'x', mods = 'CTRL', timeout_milliseconds = 1500 }
@@ -348,6 +405,9 @@ config.keys = {
 
   -- Zoom pane (Ctrl-x z) & close pane (Ctrl-x x)
   { key = 'z', mods = 'LEADER', action = act.TogglePaneZoomState },
+  -- Zoomed pair toggle: mark (Ctrl-x m), then flip between marked and current (Ctrl-x ;)
+  { key = 'm', mods = 'LEADER', action = mark_zoom_pane },
+  { key = ';', mods = 'LEADER', action = toggle_zoom_pair },
   { key = 'x', mods = 'LEADER', action = act.CloseCurrentPane({ confirm = true }) },
 
   -- Tabs (tmux windows): create (c), next (n), prev (p), rename (,)

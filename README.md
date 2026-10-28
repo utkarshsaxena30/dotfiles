@@ -176,6 +176,7 @@ WezTerm acts as the unified terminal multiplexer across both Windows PowerShell 
 - **`Ctrl-x |`** / **`Ctrl-x -`**: Split pane right / down (inherits current pane OS & directory)
 - **`Ctrl-Left/Right/Up/Down`**: Navigate panes directly
 - **`Ctrl-x z`**: Toggle pane zoom
+- **`Ctrl-x m`** / **`Ctrl-x ;`**: Mark a pane / toggle zoomed between the marked pane and the current one (route between them doesn't matter)
 - **`Ctrl-x c`** / **`Ctrl-x u`**: New tab in current OS / new WSL Ubuntu tab
 - **`Ctrl-x 1..9`** / **`Ctrl-x n`** / **`Ctrl-x p`**: Switch tabs
 - **`Ctrl-x s`** / **`Ctrl-x S`**: Fuzzy picker for named Copilot sessions in `workspaces.json` (opens in split pane or new tab)
